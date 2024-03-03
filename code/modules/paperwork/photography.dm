@@ -50,11 +50,8 @@
 	..()
 
 /obj/item/photo/get_examine_text(mob/user)
-	if(in_range(user, src) || isobserver(user))
-		show(user)
-		return list(desc)
-	else
-		return  list(SPAN_NOTICE("It is too far away."))
+	show(user)
+	return list(desc)
 
 /obj/item/photo/proc/show(mob/living/user)
 	if(!isicon(img)) return // this should stop a runtime error

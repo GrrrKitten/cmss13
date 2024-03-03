@@ -75,14 +75,11 @@
 
 /obj/item/paper/get_examine_text(mob/user)
 	. = ..()
-	if(in_range(user, src) || isobserver(user))
-		if(!(istype(user, /mob/dead/observer) || istype(user, /mob/living/carbon/human) || isRemoteControlling(user)))
-			// Show scrambled paper if they aren't a ghost, human, or silicone.
-			read_paper(user,scramble = TRUE)
-		else
-			read_paper(user)
+	if(!(istype(user, /mob/dead/observer) || istype(user, /mob/living/carbon/human) || isRemoteControlling(user)))
+		// Show scrambled paper if they aren't a ghost, human, or silicone.
+		read_paper(user,scramble = TRUE)
 	else
-		. += SPAN_NOTICE("It is too far away.")
+		read_paper(user)
 
 /obj/item/paper/proc/read_paper(mob/user, scramble = FALSE)
 	var/datum/asset/asset_datum = get_asset_datum(/datum/asset/simple/paper)
