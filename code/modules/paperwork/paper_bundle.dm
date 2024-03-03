@@ -82,7 +82,6 @@
 
 /obj/item/paper_bundle/attack_self(mob/user)
 	..()
-
 	if(!(ishuman(user) || isobserver(user)))
 		return
 
