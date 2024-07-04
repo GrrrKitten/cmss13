@@ -63,7 +63,7 @@
 			S.frequency = GET_RANDOM_FREQ // Same frequency for everybody
 
 	if(!sound_range)
-		sound_range = round(0.25*vol) //if no specific range, the max range is equal to a quarter of the volume.
+		sound_range = floor(0.25*vol) //if no specific range, the max range is equal to a quarter of the volume.
 	S.range = sound_range
 
 	var/turf/turf_source = get_turf(source)
@@ -324,6 +324,8 @@
 				S = pick('sound/effects/alien_resin_move1.ogg','sound/effects/alien_resin_move2.ogg')
 			if("alien_talk")
 				S = pick('sound/voice/alien_talk.ogg','sound/voice/alien_talk2.ogg','sound/voice/alien_talk3.ogg')
+			if("larva_talk")
+				S = pick('sound/voice/larva_talk1.ogg','sound/voice/larva_talk2.ogg','sound/voice/larva_talk3.ogg','sound/voice/larva_talk4.ogg')
 			if("hiss_talk")
 				S = pick('sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
 			if("alien_growl")
@@ -405,4 +407,4 @@
 	set category = "Debug"
 
 	for(var/sound/S in SoundQuery())
-		UNLINT(to_chat(src, "channel#[S.channel]: [S.status] - [S.file] - len=[S.len], wait=[S.wait], offset=[S.offset], repeat=[S.repeat]")) // unlint until spacemandmm suite-1.7
+		UNLINT(to_chat(src, "channel#[S.channel]: [S.status] - [S.file] - len=[length(S)], wait=[S.wait], offset=[S.offset], repeat=[S.repeat]")) // unlint until spacemandmm suite-1.7
